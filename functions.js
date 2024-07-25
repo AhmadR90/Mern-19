@@ -24,20 +24,36 @@ function hi(p1 = 6, p2 = 3) {
 //hi(2);
 
 //arrow function also anonymous funtion(no name)
-const arrow1 = (p1 = 3, p2 = 2) => {
+const arrow1 = (
+  p1 = 3,
+  p2 = ((params) => {
+    console.log("hello");
+    return 1;
+  })(params)
+) => {
   p1 % 2 == 0 ? console.log(`${p1} is even`) : console.log(`${p1} is odd`);
   p2 % 2 == 0 ? console.log(`${p2} is even`) : console.log(`${p2} is odd`);
 };
 
 //arrow1();
 
-const arrow = (p1 = 7, p2 =4) => {
+const arrow = (p1 = 7, p2 = 4) => {
   p1 % 2 == 0 ? console.log(`${p1} is even`) : console.log(`${p1} is odd`);
   p2 % 2 == 0 ? console.log(`${p2} is even`) : console.log(`${p2} is odd`);
 };
-arrow()
+//arrow()
 
 //IIFE function
-// ((params) => {
-//   console.log("hello");
-// })();
+// (() => {
+//     console.log("IIFE Works");
+
+//   })()
+
+
+
+//print the greater number using ternary operator only **TASK*
+let a = 4;
+let b = 5;
+let c = 6;
+let d = 7;
+//console.log(a > b ? ((a > c) ? ((a>d) ? a:d) : (c > d) ? c:d):((b>c)?((b>d)?b:d):(c>d?c:d)));
