@@ -3,11 +3,11 @@ var user = [];
 module.exports = {
   create: (req, res) => {
     try {
-      const newUser={...req.body}
-      user.push(req.body);
+      const { username, password } = req.body;
+      user.push({ username, password });
 
       return res.send({
-        response: newUser,
+        response: user,
       });
     } catch (error) {
       return res.send({
