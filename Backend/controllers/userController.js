@@ -1,41 +1,39 @@
 //const { response } = require("../app");
-const {hash}=require("bcryptjs")
-var users = [{
-  username:"unique",
-  password:"123456"
-}];
+const { hash } = require("bcryptjs");
+const { createUser,getAllUsers } = require("../models/userModel");
 
 module.exports = {
-  create:async (req, res) => {
+  create: async (req, res) => {
+    // console.log(req.body);
+    // res.send(req.body)
+
     try {
-      let { username, password } = req.body;
-      users.map((user) => {
-        if (user.username == username) {
-          return res.send({
-            response: "user already exists",
-          });
-        }
-      });
-
-      password= await hash(password,10)
-      users.push({ username, password });
-
-      return res.send({
-        response: {
-          username,
-          password,
-        },
-      });
+      const user = await createUser(req.body);
+      res.send(user);
+      if (user.error) {
+        return {
+          error: user.error,
+        };
+      }
+      return {
+        response: user.response,
+      };
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return res.send({
         error: error,
       });
     }
   },
 
-  getAll: (req, res) => {
+  getAll: async (req, res) => {
     try {
+      const users= await getAllUsers();
+      if(users.error){
+        return{
+          error:users.error
+        }
+      }
       return res.send({
         response: users,
       });
@@ -49,9 +47,8 @@ module.exports = {
   byUsername: (req, res) => {
     try {
       const { username } = req.query;
-      console.log(username)
+      console.log(username);
       users.map((user) => {
-        
         if (user.username == username) {
           return res.send({
             response: user,
