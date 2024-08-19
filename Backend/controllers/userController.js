@@ -1,14 +1,14 @@
 //const { response } = require("../app");
-
+const {hash}=require("bcryptjs")
 var users = [{
   username:"unique",
   password:"123456"
 }];
 
 module.exports = {
-  create: (req, res) => {
+  create:async (req, res) => {
     try {
-      const { username, password } = req.body;
+      let { username, password } = req.body;
       users.map((user) => {
         if (user.username == username) {
           return res.send({
@@ -16,6 +16,8 @@ module.exports = {
           });
         }
       });
+
+      password= await hash(password,10)
       users.push({ username, password });
 
       return res.send({
@@ -25,6 +27,7 @@ module.exports = {
         },
       });
     } catch (error) {
+      console.log(error)
       return res.send({
         error: error,
       });
