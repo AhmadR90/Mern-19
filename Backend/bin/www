@@ -34,7 +34,7 @@ db.sequelize
     server.on("error", onError);
     server.on("listening", onListening);
   })
-  .catch(() => {
+  .catch((error) => {
     console.log("Error syncing database", error);
   });
 
