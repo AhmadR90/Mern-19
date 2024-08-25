@@ -3,6 +3,7 @@ const Joi = require("joi");
 module.exports = {
   createUserSchema: async(req, res, next) => {
     const createUser = Joi.object({
+      role:Joi.valid("Instructor", "Admin", "Trainee"),
       username: Joi.string().min(4).max(32).required(),
       password: Joi.string().min(6).max(18).required(),
     });

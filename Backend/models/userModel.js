@@ -16,7 +16,19 @@ module.exports = {
   },
   getAllUsers: async () => {
     try {
-      const users = await models.Users.findAll();
+      const users = await models.Users.findAll(
+      {
+        attributes:{
+          exclude:["password","roleId"]
+        },
+        include:[
+          {
+            model:models.roles,
+            attributes:["role","roleId"]
+          }
+        ]
+      }
+      );
       return {
         response: users,
       };

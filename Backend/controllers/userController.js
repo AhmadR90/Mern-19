@@ -1,6 +1,8 @@
 //const { response } = require("../app");
 const { hash } = require("bcryptjs");
-const { createUser,getAllUsers } = require("../models/userModel");
+const responseHandler = require("../responseHandler");
+const { createUser, getAllUsers } = require("../models/userModel");
+const { getRole } = require("../models/commonModel");
 
 module.exports = {
   create: async (req, res) => {
@@ -8,16 +10,18 @@ module.exports = {
     // res.send(req.body)
 
     try {
-      const user = await createUser(req.body);
-      res.send(user);
-      if (user.error) {
-        return {
-          error: user.error,
-        };
+      const role = await getRole(req.body);
+      if (role.error) {
+        return res.send({
+          error: role.error,
+        });
       }
-      return {
-        response: user.response,
-      };
+      delete req.body.role;
+      req.body.roleId = role.response.dataValues.roleId;
+      const user = await createUser(req.body);
+
+      responseHandler(user, res);
+      res.send(user);
     } catch (error) {
       console.log(error);
       return res.send({
@@ -28,15 +32,10 @@ module.exports = {
 
   getAll: async (req, res) => {
     try {
-      const users= await getAllUsers();
-      if(users.error){
-        return{
-          error:users.error
-        }
-      }
-      return res.send({
-        response: users,
-      });
+      const users = await getAllUsers();
+
+      responseHandler(users, res);
+      res.send(users);
     } catch (error) {
       return res.send({
         error: error,
