@@ -19,11 +19,12 @@ module.exports = {
 
   getUser: async(req, res, next) => {
     const User = Joi.object({
-      username: Joi.string().min(4).max(32).required(),
+      username: Joi.string().min(4).max(32),
+      userId:Joi.string()
       
     });
     try {
-      const validate = await User.validateAsync(req.query);
+     await User.validateAsync(req.query);
       next();
     } catch (error) {
       return res.send({
