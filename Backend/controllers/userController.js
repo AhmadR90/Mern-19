@@ -37,7 +37,8 @@ module.exports = {
 
   getAll: async (req, res) => {
     try {
-      const users = await getAllUsers();
+      req.query.offset=(req.query.pageNo-1)*req.query.limit;
+      const users = await getAllUsers(req.query);
 
       responseHandler(users, res);
       res.send(users);

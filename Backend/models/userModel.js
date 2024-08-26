@@ -14,7 +14,7 @@ module.exports = {
       };
     }
   },
-  getAllUsers: async () => {
+  getAllUsers: async (query) => {
     try {
       const users = await models.Users.findAll({
         attributes: {
@@ -26,6 +26,10 @@ module.exports = {
             attributes: ["role", "roleId"],
           },
         ],
+        offset:query.offset,
+        limit:query.limit
+
+        
       });
       return {
         response: users,

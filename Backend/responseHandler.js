@@ -11,7 +11,7 @@ const responseHandler = (data, res) => {
   } catch (error) {
     console.log(error);
     return res.send( {
-      error: error,
+      error: error.message,
     });
   }
 };
