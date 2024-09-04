@@ -9,18 +9,23 @@ const App = () => {
   const inputHandler = (e) => {
     setInput(e.target.value);
   };
- 
+
   const clickHandler = () => {
     setItems([...item, input]);
   };
 
   return (
     <>
-      <input value={input}onChange={inputHandler} placeholder="Enter the product name" />
+      <input
+        value={input}
+        onChange={inputHandler}
+        placeholder="Enter the product name"
+      />
       <button onClick={clickHandler}>Add</button>
-      {items.map((item, index, arr) => {
-        return <Counter itemName={item} />;
-      })}
+      {/* {items.map((item, index, arr) => {
+        return <Counter key={index} itemName={item} />;
+      })} */}
+      <Counter itemName="Shoes"></Counter>
     </>
   );
 };
