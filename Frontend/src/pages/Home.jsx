@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Counter from "../components/Counter";
 import Product from "./Product";
+import { Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Home = () => {
   const item = ["jeans", "jackets", "caps"];
   const [items, setItems] = useState(item);
@@ -17,8 +19,11 @@ const Home = () => {
 
   return (
     <>
+  <h1>Home</h1>
+
+    <Outlet/>
       {/* <Product/> */}
-      <input
+      {/* <input
         value={input}
         onChange={inputHandler}
         placeholder="Enter the product name"
@@ -41,7 +46,7 @@ const Home = () => {
             // }}
           />
         );
-      })}
+      })} */}
       {/* <Counter itemName="Shoes"></Counter> */}
     </>
   );
