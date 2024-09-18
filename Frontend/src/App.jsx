@@ -7,10 +7,12 @@ import Navbar from "./pages/Navbar";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import About from "./pages/About";
+import FormValidation from "./pages/FormValidation";
 const App = () => {
   return (
     <>
-      <Navbar />
+    <FormValidation/>
+      {/* <Navbar />
      
       <Routes>
         <Route path="/" element={<Home/>}>
@@ -20,7 +22,7 @@ const App = () => {
         <Route path="about" element={<About/>}></Route>
         <Route path="products" element={<Product />}></Route>
         <Route path="*" element={<Error />}></Route>
-      </Routes>
+      </Routes> */}
     </>
   );
 };
