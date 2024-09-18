@@ -4,24 +4,33 @@ import Counter from "../components/Counter";
 import Product from "./Product";
 import { Outlet } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const item = ["jeans", "jackets", "caps"];
   const [items, setItems] = useState(item);
   const [input, setInput] = useState("");
-
+  const navigate = useNavigate();
   const inputHandler = (e) => {
     setInput(e.target.value);
   };
-
+     
   const clickHandler = () => {
     setItems([...item, input]);
   };
 
   return (
     <>
-  <h1>Home</h1>
+      <h1>Home</h1>
 
-    <Outlet/>
+      {/* <Outlet/> */}
+      <button
+        className="rounded-lg bg-black text-white"
+        onClick={() => {
+          navigate("order-summary");
+        }}
+      >
+        Place order
+      </button>
       {/* <Product/> */}
       {/* <input
         value={input}

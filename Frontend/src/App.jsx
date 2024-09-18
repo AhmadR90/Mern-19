@@ -8,11 +8,12 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
 import About from "./pages/About";
 import FormValidation from "./pages/FormValidation";
+import OrderSummary from "./pages/OrderSummary";
 const App = () => {
   return (
     <>
-    <FormValidation/>
-      {/* <Navbar />
+    {/* <FormValidation/> */}
+      <Navbar />
      
       <Routes>
         <Route path="/" element={<Home/>}>
@@ -21,8 +22,10 @@ const App = () => {
         </Route>
         <Route path="about" element={<About/>}></Route>
         <Route path="products" element={<Product />}></Route>
+        <Route path="order-summary"  element={<OrderSummary/>}></Route>
         <Route path="*" element={<Error />}></Route>
-      </Routes> */}
+
+      </Routes>
     </>
   );
 };
