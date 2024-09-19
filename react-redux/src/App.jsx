@@ -29,6 +29,23 @@ function App() {
       >
         Refund Cake
       </button>
+      <br />
+      <br />
+      <h1>No of Cakes:{abc.vanillaIceCreams}</h1>
+      <button
+        onClick={() => {
+          dispatch(buy_ice_cream());
+        }}
+      >
+        Buy IceCream
+      </button>
+      <button
+        onClick={() => {
+          dispatch(refund_ice_cream());
+        }}
+      >
+        Refund IceCream
+      </button>
 
     </>
   );
