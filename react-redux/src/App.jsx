@@ -1,20 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import {Provider} from "react-redux"
-import store from './redux/store'
+import { useState } from "react";
+
+import "./App.css";
+
+import { useSelector } from "react-redux";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const selector = useSelector((x) => {
+    return x;
+  });
 
   return (
     <>
-     <Provider store={store}>
-     App Component
-     </Provider>
+      <h1>No of Cakes-{selector.totalCakes}</h1>
+      <button>Buy Cake</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
