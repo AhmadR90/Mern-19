@@ -2,18 +2,34 @@ import { useState } from "react";
 
 import "./App.css";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { buyCake, refundCake } from "./redux/cake/cakeAction";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const selector = useSelector((x) => {
+ 
+  const dispatch = useDispatch();
+  const abc = useSelector((x) => {
     return x;
   });
 
   return (
     <>
-      <h1>No of Cakes-{selector.totalCakes}</h1>
-      <button>Buy Cake</button>
+      <h1>No of Cakes:{abc.vanillaCakes}</h1>
+      <button
+        onClick={() => {
+          dispatch(buyCake());
+        }}
+      >
+        Buy Cake
+      </button>
+      <button
+        onClick={() => {
+          dispatch(refundCake());
+        }}
+      >
+        Refund Cake
+      </button>
+
     </>
   );
 }
